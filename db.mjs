@@ -38,6 +38,7 @@ async function createTables() {
         await global.db.execute(`INSERT INTO settings (name, value) VALUES ("internal_id_required", "0")`)
         await global.db.execute(`INSERT INTO settings (name, value) VALUES ("default_permissions", ?)`, [permissions.CHANGE_EMAIL, permissions.CHANGE_PASSWORD])
         await global.db.execute(`INSERT INTO settings (name, value) VALUES ("mifare_key", ?)`, [randomBytes(6).toString("hex")])
+        await global.db.execute(`INSERT INTO settings (name, value) VALUES ("company_name", "OpenClocking")`)
     }
     if(!tables.includes("users")) {
         await global.db.execute(`
@@ -67,8 +68,8 @@ async function createTables() {
                 "OpenClocking Manager",
                 "manager@openclocking.com",
                 await bcrypt.hash(settings.default_password,
-                permissions.ALL,
                 parseInt(settings.bcrypt_salt_rounds)),
+                permissions.ALL,
                 1,
                 1
             ])
