@@ -1,0 +1,24 @@
+{
+  "name": "openclocking-server",
+  "version": "0.0.1",
+  "description": "server side of OpenClocking",
+  "main": "index.mjs",
+  "homepage": "https://github.com/OpenClocking/openclocking-server#readme",
+  "bugs": {
+    "url": "https://github.com/OpenClocking/openclocking-server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenClocking/openclocking-server.git"
+  },
+  "author": "OpenClocking",
+  "license": "CC BY-NC 4.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "mysql2": "^3.16.1"
+  }
+}
