@@ -1,0 +1,10 @@
+{
+    "port"     : 3000,
+    "database" : {
+        "host"     : "HOST",
+        "port"     : 3306,
+        "user"     : "USER",
+        "password" : "PASSWORD",
+        "database" : "openclocking"
+    }
+}
