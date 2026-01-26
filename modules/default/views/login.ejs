@@ -3,30 +3,33 @@
 
     <div class="card login-card shadow-lg p-4" style="width: 100%; max-width: 400px;">
         <div class="card-body">
-            <h3 class="text-center mb-4"><%= settings.company_name %> - Connexion</h3>
+            <h3 class="text-center mb-4"><%=settings.company_name ? settings.company_name + " - " : ""%><%= global.i18n.translate(settings.lang, "login") %></h3>
+            <%- include("./includes/first_login.ejs", {settings}) %>
             <form action="/login" method="post">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Adresse email</label>
-                    <input type="email" class="form-control" id="email" placeholder="nom@exemple.com" required>
+                    <label for="email" class="form-label"><%= global.i18n.translate(settings.lang, "email") %></label>
+                    <input type="email" class="form-control" id="email" placeholder="<%= global.i18n.translate(settings.lang, "name_l") %>@<%= settings.company_domain || "mail.com" %>" required name="email">
                 </div>
 
                 <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                    <label for="password" class="form-label"><%= global.i18n.translate(settings.lang, "password") %></label>
+                    <input type="password" class="form-control" id="password" placeholder="••••••••" required name="password">
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="remember">
+                        <input class="form-check-input" type="checkbox" id="remember" name="remember">
                         <label class="form-check-label" for="remember">
-                            Se souvenir de moi
+                            <%= global.i18n.translate(settings.lang, "remember_me") %>
                         </label>
                     </div>
-                    <a href="/reset_password" class="small">Mot de passe oublié ?</a>
+                    <a href="/reset_password" class="small"><%= global.i18n.translate(settings.lang, "reset_password") %></a>
                 </div>
-
+                <% for(const message of messages["login"] || []) { %>
+                    <%- message %>
+                <% } %>
                 <button type="submit" class="btn btn-primary w-100">
-                    Se connecter
+                    <%= global.i18n.translate(settings.lang, "login") %>
                 </button>
             </form>
         </div>

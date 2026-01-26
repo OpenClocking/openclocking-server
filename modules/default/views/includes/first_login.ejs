@@ -1,0 +1,5 @@
+<% if(parseInt(settings.first_login)) { %>
+    <div class="alert alert-primary" role="alert">
+        <%- global.i18n.translate(settings.lang, "first_login", {password : settings.default_password}) %>
+    </div>
+<% } %>
