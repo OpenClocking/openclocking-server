@@ -1,0 +1,17 @@
+{
+    "first_login":"Ceci est la première fois qu'une connexion est faite sur OpenClocking, vous pouvez utiliser les identifiants suivants pour vous connecter<br>Email : <code>manager@openclocking.com</code><br>Mot de passe: <code>{{password}}</code>",
+    "login":"Se connecter",
+    "email":"Email",
+    "password":"Mot de passe",
+    "remember_me":"Se souvenir de moi",
+    "reset_password":"Mot de passe oublié ?",
+    "name_l":"nom",
+    "change_password":"Changer de mot de passe",
+    "old_password":"Ancien mot de passe",
+    "password_repeat":"Répéter le mot de passe",
+    "errors_login_credentials":"Désolé mais l'adresse email et/ou le mot de passe sont incorrects.",
+    "errors_change_password_recycled":"Vous ne pouvez pas réutiliser les {{count}} derniers mots de passe",
+    "errors_change_passwords_mismatch":"Les mots de passe ne correspondent pas",
+    "errors_change_password_wrong_old_password":"L'ancien mot de passe n'est pas valide",
+    "errors_missing_fields":"Tout les champs ne sont pas remplis."
+}
