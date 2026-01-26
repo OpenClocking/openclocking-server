@@ -10,6 +10,10 @@ import jwt from "jsonwebtoken";
 import * as config from "./config.json" with { type: 'json' };
 global.config = config.default;
 
+import * as i18n from "./i18n.js";
+global.i18n = i18n.default
+global.i18n.init()
+
 import {load as dbLoad} from "./db.mjs";
 await dbLoad();
 
@@ -18,17 +22,26 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', process.cwd());
-global.app = app
 
 app.use(async (req, res, next) => {
     if (req.cookies.token) {
-        let token = jwt.verify(req.cookies.token, config.jwt);
-        if (token.userId) {
-            let [user] = await global.db.query("SELECT * FROM users WHERE id = ?", [token.userId])
-            req.user = user
+        const [settingsDb] = await global.db.query(`
+        SELECT * FROM settings WHERE name = "jwt_key"`)
+        const settings = Object.fromEntries(settingsDb.map(({ name, value }) => [name, value]));
+        let token = {}
+        try {
+            token = jwt.verify(req.cookies.token, settings.jwt_key);
+        } catch (error) {}
+        if (token.user_id) {
+            let [user] = await global.db.query("SELECT * FROM users WHERE id = ?", [token.user_id])
+            req.user = user[0]
+            req.user.session = token
         }
     }
+    next()
 })
+
+global.app = app
 
 const modulesPath = join(process.cwd(), "modules");
 const modulesFolders = (await readdir(modulesPath, { withFileTypes: true })).filter((f) => f.isDirectory()).map(dirent => dirent.name);
