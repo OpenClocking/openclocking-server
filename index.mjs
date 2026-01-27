@@ -55,5 +55,7 @@ for(const moduleName of modulesFolders) {
     }
 }
 
+global.setupSteps = 4 //number of initial setup steps
+
 app.listen(global.config.port, function() { console.log(`Server started on port ${global.config.port}`) });
 

@@ -44,6 +44,7 @@ async function createTables() {
         await global.db.execute(`INSERT INTO settings (name, value) VALUES ("company_domain", "openclocking.com")`)
         await global.db.execute(`INSERT INTO settings (name, value) VALUES ("service_url", "https://demo.openclocking.com")`)
         await global.db.execute(`INSERT INTO settings (name, value) VALUES ("first_login", "1")`)
+        await global.db.execute(`INSERT INTO settings (name, value) VALUES ("setup_step", "1")`)
     }
     if(!tables.includes("users")) {
         await global.db.execute(`
