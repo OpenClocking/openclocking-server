@@ -1,0 +1,178 @@
+<%- include("./includes/header.ejs", {settings}) %>
+<body class="bg-light">
+
+    <div class="container min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="card shadow-lg border-0 p-4" style="max-width: 420px; width: 100%;">
+            
+            <div class="text-center mb-4">
+                <h3 class="fw-bold"><%= global.i18n.translate(settings.lang, "initial_setup") %></h3>
+                <h4 class="fw-bold"><%= global.i18n.translate(settings.lang, "setup_step", {step}) %></h4>
+                <p class="text-muted mb-0">
+                    <%= global.i18n.translate(settings.lang, `setup_step_${step}`) %>
+                </p>
+            </div>
+            <form method="post">
+                    <% if(step === 1) { %>
+                        <div class="mb-4">
+                            <label for="language" class="form-label fw-semibold">
+                                <%= global.i18n.translate(settings.lang, "language") %>
+                            </label>
+                            <select id="language" class="form-select form-select-lg" name="lang" required>
+                                <option value="" disabled>
+                                    — <%= global.i18n.translate(settings.lang, "select_language") %> —
+                                </option>
+                                <% for(const lang of Object.keys(global.i18n.languages)) { %>
+                                    <option value="<%= lang %>" <% if(lang === settings.lang) { %>selected<% } %>><%= global.i18n.translate(lang, "lang_name") %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                    <% } else if(step === 2) { %>
+                        <div class="mb-3">
+                            <label for="orgName" class="form-label fw-semibold">
+                                <%= global.i18n.translate(settings.lang, "org_name") %> <small>(<%= global.i18n.translate(settings.lang, "optional") %>)</small>
+                            </label>
+                            <input
+                                type="text"
+                                id="orgName"
+                                class="form-control form-control-lg"
+                                placeholder="Ex : ZaptoInc"
+                                value="<%= settings.company_name %>"
+                                name="company_name"
+                            >
+                            <div class="form-text">
+                                <%= global.i18n.translate(settings.lang, "only_visual") %>
+                            </div>
+                        </div>
+                    
+                        <div class="mb-4">
+                            <label for="domainName" class="form-label fw-semibold">
+                                <%= global.i18n.translate(settings.lang, "org_domain_name") %> <small>(<%= global.i18n.translate(settings.lang, "optional") %>)</small>
+                            </label>
+                            <input
+                                type="text"
+                                id="domainName"
+                                class="form-control form-control-lg"
+                                placeholder="ex : zaptoinc.com"
+                                value="<%= settings.company_domain %>"
+                                name="company_domain"
+                            >
+                            <div class="form-text">
+                                <%= global.i18n.translate(settings.lang, "only_visual") %>
+                            </div>
+                        </div>
+                    <% } else if(step === 3) { %>
+                        <div class="mb-4">
+                            <label for="serviceUrl" class="form-label fw-semibold">
+                                <%= global.i18n.translate(settings.lang, "application_url") %>
+                            </label>
+                            <input
+                                type="url"
+                                id="serviceUrl"
+                                class="form-control form-control-lg"
+                                placeholder="https://demo.openclocking.com"
+                                required
+                                value="<%= settings.service_url %>"
+                                name="service_url"
+                            >
+                            <div class="form-text">
+                                <%= global.i18n.translate(settings.lang, "application_url_description") %>
+                            </div>
+                        </div>
+                    <% } else if(step === 4) { %>
+                        <div class="mb-3">
+                            <label for="defaultPassword" class="form-label fw-semibold">
+                                <%= global.i18n.translate(settings.lang, "default_user_password") %>
+                            </label>
+                            <input
+                                type="text"
+                                id="defaultPassword"
+                                class="form-control form-control-lg"
+                                placeholder="Mot de passe temporaire"
+                                required
+                                value="<%= settings.default_password %>"
+                                name="default_password"
+                            >
+                            <% for(const message of messages["setup_default_password"] || []) { %>
+                                <%- message %>
+                            <% } %>
+                            <div class="form-text text-warning">
+                                ⚠️ <%= global.i18n.translate(settings.lang, "default_user_password_description") %>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="internalIdRequired"
+                                    <% if(settings.internal_id_required === "1") { %>checked<% } %>
+                                    name="internal_id_required"
+                                >
+                                <label class="form-check-label fw-semibold" for="internalIdRequired">
+                                    <%= global.i18n.translate(settings.lang, "internal_id_required") %>
+                                </label>
+                            </div>
+                            <div class="form-text">
+                                <%= global.i18n.translate(settings.lang, "internal_id_required_description") %>
+                            </div>
+                        </div>
+                    
+                        <div class="mb-4">
+                            <% 
+                            let available_permissions = []
+                            for(const perm of Object.keys(permissions)) {
+                                if(perm !== "critical" && perm !== "ignored") {
+                                    if(!permissions.critical.includes(permissions[perm]) && !permissions.ignored.includes(permissions[perm])) {
+                                        available_permissions.push(perm)
+                                    }
+                                }
+                            }
+                            %>
+                            <label class="form-label fw-semibold">
+                                <%= global.i18n.translate(settings.lang, "default_permissions") %>
+                            </label>
+                        
+                            <div class="list-group">
+                                <% for(const perm of available_permissions) { %>
+                                    <label class="list-group-item d-flex align-items-center gap-2">
+                                        <input
+                                            class="form-check-input m-0"
+                                            type="checkbox"
+                                            name="default_permissions"
+                                            value="<%= permissions[perm] %>"
+                                            <% if(parseInt(settings.default_permissions) & permissions[perm]) { %>checked<% } %>>
+                                        <%= global.i18n.translate(settings.lang, `permission_${perm.toLowerCase()}`) %>
+                                    </label>
+                                <% } %>
+                            </div>
+                        
+                            <div class="form-text">
+                                <%= global.i18n.translate(settings.lang, "default_permissions_description") %>
+                            </div>
+                        </div>
+                    <% } %>
+                <% for(const message of messages["setup"] || []) { %>
+                    <%- message %>
+                <% } %>
+                <button type="submit" class="btn btn-primary btn-lg w-100">
+                    <% if(step >= global.setupSteps) { %> 
+                        <%= global.i18n.translate(settings.lang, "finish") %>
+                    <% } else { %>
+                        <%= global.i18n.translate(settings.lang, "next") %>
+                    <% } %>
+                    
+                </button>
+            </form>
+
+            <div class="text-center mt-3">
+                <small class="text-muted">
+                    <%= global.i18n.translate(settings.lang, "setup_footer") %>
+                </small>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+<%- include("./includes/footer.ejs") %>
