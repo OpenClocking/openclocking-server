@@ -1,4 +1,5 @@
 {
+    "lang_name":"Français",
     "first_login":"Ceci est la première fois qu'une connexion est faite sur OpenClocking, vous pouvez utiliser les identifiants suivants pour vous connecter<br>Email : <code>manager@openclocking.com</code><br>Mot de passe: <code>{{password}}</code>",
     "login":"Se connecter",
     "email":"Email",
@@ -13,5 +14,30 @@
     "errors_change_password_recycled":"Vous ne pouvez pas réutiliser les {{count}} derniers mots de passe",
     "errors_change_passwords_mismatch":"Les mots de passe ne correspondent pas",
     "errors_change_password_wrong_old_password":"L'ancien mot de passe n'est pas valide",
-    "errors_missing_fields":"Tout les champs ne sont pas remplis."
+    "errors_missing_fields":"Tout les champs ne sont pas remplis.",
+    "initial_setup":"Configuration initiale",
+    "setup_step":"Étape {{step}}",
+    "setup_step_1":"Choisissez la langue par défaut de l'application",
+    "setup_step_2":"Choisissez le nom de l'organisation",
+    "setup_step_3":"Configuration des accès",
+    "language":"Langue",
+    "select_language":"Sélectionnez une langue",
+    "setup_footer":"Cette option pourra être modifiée plus tard",
+    "next":"Suivant",
+    "finish":"Terminer",
+    "only_visual":"Uniquement visuel",
+    "org_name":"Nom de l'organisation",
+    "org_domain_name":"Nom de domaine de l'organisation",
+    "optional":"Optionnel",
+    "application_url":"URL de l'application",
+    "application_url_description":"URL publique utilisée par les utilisateurs",
+    "default_user_password":"Mot de passe utilisateur par défaut",
+    "default_user_password_description":"Les utilisateurs devront modifier ce mot de passe lors de la première connexion.",
+    "internal_id_required":"Rendre l'identifiant interne obligatoire",
+    "internal_id_required_description":"Empêche la création d'un utilisateur sans identifiant interne",
+    "default_permissions":"Permissions par défaut",
+    "default_permissions_description":"Cliquez sur une ou plusieurs permissions pour les attribuer par défaut",
+    "permission_change_email":"Changer son email",
+    "permission_change_password":"Changer son mot de passe"
+
 }
