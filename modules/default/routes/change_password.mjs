@@ -113,9 +113,9 @@ router.post("/change_password", async function (req, res) {
             messages,
             "change_password",
             `
-                        <div class="alert alert-danger" role="alert">
-                            ${global.i18n.translate(settings.lang, "errors_change_password_recycled", { count: settings.anti_password_recycle_count || 1 })}
-                        </div>`,
+            <div class="alert alert-danger" role="alert">
+                ${global.i18n.translate(settings.lang, "errors_change_password_recycled", { count: settings.anti_password_recycle_count || 1 })}
+            </div>`,
           );
         }
       } else {
@@ -123,9 +123,9 @@ router.post("/change_password", async function (req, res) {
           messages,
           "change_password",
           `
-                    <div class="alert alert-danger" role="alert">
-                        ${global.i18n.translate(settings.lang, "errors_change_passwords_mismatch")}
-                    </div>`,
+            <div class="alert alert-danger" role="alert">
+                ${global.i18n.translate(settings.lang, "errors_change_passwords_mismatch")}
+            </div>`,
         );
       }
     } else {
@@ -133,9 +133,9 @@ router.post("/change_password", async function (req, res) {
         messages,
         "change_password",
         `
-                <div class="alert alert-danger" role="alert">
-                    ${global.i18n.translate(settings.lang, "errors_change_password_wrong_old_password")}
-                </div>`,
+        <div class="alert alert-danger" role="alert">
+            ${global.i18n.translate(settings.lang, "errors_change_password_wrong_old_password")}
+        </div>`,
       );
     }
   } else {
@@ -143,9 +143,9 @@ router.post("/change_password", async function (req, res) {
       messages,
       "change_password",
       `
-            <div class="alert alert-danger" role="alert">
-                ${global.i18n.translate(settings.lang, "errors_missing_fields")}
-            </div>`,
+        <div class="alert alert-danger" role="alert">
+            ${global.i18n.translate(settings.lang, "errors_missing_fields")}
+        </div>`,
     );
   }
 

@@ -80,9 +80,9 @@ router.post("/login", async function (req, res) {
         messages,
         "login",
         `
-                <div class="alert alert-danger" role="alert">
-                    ${global.i18n.translate(settings.lang, "errors_login_credentials")}
-                </div>`,
+            <div class="alert alert-danger" role="alert">
+                ${global.i18n.translate(settings.lang, "errors_login_credentials")}
+            </div>`,
       );
     }
   } else {
@@ -90,9 +90,9 @@ router.post("/login", async function (req, res) {
       messages,
       "login",
       `
-            <div class="alert alert-danger" role="alert">
-                ${global.i18n.translate(settings.lang, "errors_missing_fields")}
-            </div>`,
+        <div class="alert alert-danger" role="alert">
+            ${global.i18n.translate(settings.lang, "errors_missing_fields")}
+        </div>`,
     );
   }
   res.render(`./modules/${name}/views/login.ejs`, { settings, messages });

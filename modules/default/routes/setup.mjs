@@ -108,9 +108,9 @@ router.post("/setup", async function (req, res) {
             messages,
             "setup",
             `
-                        <div class="alert alert-danger" role="alert">
-                            ${global.i18n.translate(settings.lang, "errors_missing_fields")}
-                        </div>`,
+            <div class="alert alert-danger" role="alert">
+                ${global.i18n.translate(settings.lang, "errors_missing_fields")}
+            </div>`,
           );
         }
         break;
@@ -147,9 +147,9 @@ router.post("/setup", async function (req, res) {
             messages,
             "setup",
             `
-                        <div class="alert alert-danger" role="alert">
-                            ${global.i18n.translate(settings.lang, "errors_missing_fields")}
-                        </div>`,
+            <div class="alert alert-danger" role="alert">
+                ${global.i18n.translate(settings.lang, "errors_missing_fields")}
+            </div>`,
           );
         }
         break;
@@ -164,9 +164,9 @@ router.post("/setup", async function (req, res) {
             messages,
             "setup_default_password",
             `
-                        <div class="alert alert-danger" role="alert">
-                            ${global.i18n.translate(settings.lang, "errors_missing_fields")}
-                        </div>`,
+            <div class="alert alert-danger" role="alert">
+                ${global.i18n.translate(settings.lang, "errors_missing_fields")}
+            </div>`,
           );
         }
         await global.db.execute(
