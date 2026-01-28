@@ -23,6 +23,8 @@ import * as change_password from "./routes/change_password.mjs";
 change_password.setName(name);
 import * as setup from "./routes/setup.mjs";
 setup.setName(name);
+import * as api from "./routes/api.mjs";
+api.setName(name);
 
 //console.log(router.stack.map(function(stack) { return { route : stack.route?.path, methods : Object.keys(stack.route?.methods || {})}}))
 
